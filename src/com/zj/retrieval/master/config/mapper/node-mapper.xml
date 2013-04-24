@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.retrieval.master.mapper.NodeMapper">
+	<insert id="insertNode" parameterType="hashmap">
+		INSERT INTO `T_NODE` VALUES(${id}, ${cname}, ${ename}, ${uri}, 
+			${parentId}, ${ofParentIndex}, ${remark}, ${creatorId}, ${modifierId})
+	</insert>
+	
+	<select id="selectNodeByCName" 
+			resultMap="com.zj.retrieval.master.config.resultmap.nodeResultMap" 
+			parameterType="hashmap">
+		SELECT * FROM T_NODE WHERE CNAME = ${cname}
+	</select>
+	
+	<select id="selectNodeByEName" 
+			resultMap="com.zj.retrieval.master.config.resultmap.nodeResultMap" 
+			parameterType="hashmap">
+		SELECT * FROM T_NODE WHERE ENAME = '${ename}'
+	</select>
+	
+	<update id="updateENameByEName" parameterType="hashmap">
+		UPDATE T_NODE SET ENAME = '${newEName}' WHERE ENAME = '${ename}'
+	</update>
+	
+	<update id="clearCName">
+		UPDATE T_NODE SET CNAME = 'xxxx'
+	</update>
+
+</mapper>

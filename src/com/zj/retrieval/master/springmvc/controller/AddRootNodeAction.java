@@ -16,12 +16,12 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.zj.retrieval.master.DetailType;
-import com.zj.retrieval.master.NodeType;
 import com.zj.retrieval.master.UserField;
 import com.zj.retrieval.master.Util;
 import com.zj.retrieval.master.dao.NodeDao;
 import com.zj.retrieval.master.dao.UserDao;
 import com.zj.retrieval.master.entity.Node;
+import com.zj.retrieval.master.entity.NodeType;
 
 public class AddRootNodeAction {
 

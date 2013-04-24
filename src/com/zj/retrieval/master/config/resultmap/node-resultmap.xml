@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.retrieval.master.config.resultmap">
+	<resultMap type="com.zj.retrieval.master.entity.Node" id="nodeResultMap">
+		<result property="id" column="id" />
+		<result property="cname" column="cname" />
+		<result property="ename" column="ename" />
+		<result property="uri" column="uri" />
+	</resultMap>
+</mapper>
+
+

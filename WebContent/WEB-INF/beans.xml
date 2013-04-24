@@ -17,7 +17,7 @@
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>/WEB-INF/jdbc.properties</value>
+				<value>/WebContent/WEB-INF/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -39,7 +39,6 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis.xml" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/zj/retrieval/master/config/resultmap/*-resultmap.xml</value>
@@ -48,11 +47,17 @@
 		</property>
 	</bean>
 	
-	<!-- -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">   
         <constructor-arg index="0" ref="sqlSessionFactory" />   
     </bean>   
 	
+	<bean id="initDataBaseListener" class="com.zj.retrieval.master.listener.InitDataBaseListener">
+		<property name="session" ref="sqlSession" />  
+	</bean>	
+	<bean id="NodeService" class="com.zj.retrieval.master.service.NodeService">
+		<property name="session" ref="sqlSession" />  
+	</bean>
 	
+	<tx:annotation-driven/>
 	
 </beans>

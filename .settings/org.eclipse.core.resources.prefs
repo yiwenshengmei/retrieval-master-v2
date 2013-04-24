@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/jdbc.properties=GBK
+encoding//src/com/zj/retrieval/master/entity/Matrix.java=UTF-8

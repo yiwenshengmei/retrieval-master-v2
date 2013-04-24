@@ -1,7 +1,11 @@
 package com.zj.retrieval.master;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
@@ -10,7 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.zj.retrieval.master.dao.NodeDao;
 import com.zj.retrieval.master.dao.UserDao;
 
-public class Util {
+public class Utils {
 	public static ApplicationContext applicationContext = null;
 	public static String IMAGE_PATH_PREFIX = "images/";
 	
@@ -58,5 +62,20 @@ public class Util {
 	
 	private static boolean endsWithSlash(String str) {
 		return str.endsWith("/") || str.endsWith("\\");
+	}
+	public static void cleanList(List... arrays) {
+		for (List array : arrays) {
+			if (array == null)
+				continue;
+			Iterator iter = array.iterator();
+			while (iter.hasNext()) {
+				if (iter.next() == null) 
+					iter.remove();
+			}
+		}
+	}
+	
+	public static String null2Empty(String value) {
+		return (value == null ? StringUtils.EMPTY : value);
 	}
 }

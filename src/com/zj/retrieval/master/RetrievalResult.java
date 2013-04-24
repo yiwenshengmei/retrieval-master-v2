@@ -3,19 +3,19 @@ package com.zj.retrieval.master;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zj.retrieval.master.entity.Attribute;
+import com.zj.retrieval.master.entity.NodeFeature;
 
 public class RetrievalResult {
 	private boolean hasResult;
-	private Attribute next;
-	private List<String> result;
-	private String lastState;
+	private NodeFeature nextFeature;
+	private List<Node> result;
+	private List<Integer> lastState;
 	
 	public RetrievalResult() {
 		hasResult = false;
-		next = null;
-		result = new ArrayList<String>();
-		lastState = "";
+		nextFeature = null;
+		result = new ArrayList<Node>();
+		lastState = new ArrayList<Integer>();
 	}
 	
 	public boolean hasResult() {
@@ -24,25 +24,28 @@ public class RetrievalResult {
 	public void hasResult(boolean hasResult) {
 		this.hasResult = hasResult;
 	}
-	public Attribute getNext() {
-		return next;
+	public NodeFeature getNextFeature() {
+		return nextFeature;
 	}
-	public void setNext(Attribute next) {
-		this.next = next;
+	public void setNextFeature(NodeFeature nextFeature) {
+		this.nextFeature = nextFeature;
 		hasResult = false;
 	}
-	public List<String> getResult() {
-		return result;
-	}
-	public void setResult(List<String> result) {
-		this.result = result;
-		hasResult = true;
-	}
-	public String getLastState() {
+
+	public List<Integer> getLastState() {
 		return lastState;
 	}
-	public void setLastState(String lastState) {
+
+	public void setLastState(List<Integer> lastState) {
 		this.lastState = lastState;
+	}
+
+	public List<Node> getResult() {
+		return result;
+	}
+
+	public void setResult(List<Node> result) {
+		this.result = result;
 	}
 	
 	

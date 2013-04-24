@@ -20,7 +20,6 @@ import org.xml.sax.InputSource;
 
 import com.jamesmurty.utils.XMLBuilder;
 import com.zj.retrieval.master.DetailType;
-import com.zj.retrieval.master.NodeType;
 import com.zj.retrieval.master.dao.RetrievalDataSource;
 
 public class Node {
@@ -33,6 +32,20 @@ public class Node {
 	private String name = "";
 	private String uriName = "";
 	private String englishName = "";
+	private String cname;
+	private String ename;
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
 	private String desc = "";
 	private String parentId = "";
 	private String owl = "";

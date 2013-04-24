@@ -12,13 +12,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.zj.retrieval.master.AttributeSelectedWrongException;
 import com.zj.retrieval.master.AttributeSelector;
 import com.zj.retrieval.master.DetailType;
-import com.zj.retrieval.master.NodeType;
 import com.zj.retrieval.master.UserField;
 import com.zj.retrieval.master.Util;
 import com.zj.retrieval.master.dao.NodeDao;
 import com.zj.retrieval.master.dao.UserDao;
 import com.zj.retrieval.master.entity.Attribute;
 import com.zj.retrieval.master.entity.Node;
+import com.zj.retrieval.master.entity.NodeType;
 
 public class AddNodeBriefAction {
 	private static Logger logger = LoggerFactory.getLogger(AddNodeBriefAction.class);

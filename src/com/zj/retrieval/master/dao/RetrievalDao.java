@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.zj.retrieval.master.Matrix;
+import com.zj.retrieval.master.Node;
 import com.zj.retrieval.master.RetrievalResult;
-import com.zj.retrieval.master.entity.Attribute;
-import com.zj.retrieval.master.entity.Matrix;
-import com.zj.retrieval.master.entity.Node;
+import com.zj.retrieval.master.entity.NodeFeature;
 
 public class RetrievalDao {
 	private Node retrievalNode;
@@ -39,7 +39,7 @@ public class RetrievalDao {
 		for (int i = 1; i < selectState.length(); i++) {
 			int perAnswer = Integer.valueOf(selectState.substring(i, i + 1));
 			// 如果回答unknown，轮空本次，这可能将导致最终答案出现多个
-			if (perAnswer == Attribute.UNKNOW)
+			if (perAnswer == NodeFeature.UNKNOW)
 				continue;
 			Matrix matrix = retrievalNode.getRetrievalDataSource().getMatrix();
 			Iterator<Integer> iter = mappingRows.iterator();
@@ -65,7 +65,7 @@ public class RetrievalDao {
 			// ????还没有完成，返回下一????询问的特??
 			result.hasResult(false);
 			int nextAttributeId = selectState.length() - 1;
-			result.setNext(retrievalNode.getRetrievalDataSource().getAttributes().get(nextAttributeId));
+			result.setNextFeature(retrievalNode.getRetrievalDataSource().getAttributes().get(nextAttributeId));
 		}
 		result.setLastState(selectState);
 		return result;

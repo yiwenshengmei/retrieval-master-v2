@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zj.retrieval.master.entity.Attribute;
+import com.zj.retrieval.master.entity.NodeFeature;
 
 public class AttributeSelector {
 	private Map<Integer, Boolean> attributeMapping;
-	private Map<Attribute, Boolean> newAttributeMapping;
+	private Map<NodeFeature, Boolean> newAttributeMapping;
 	
 	public void select(int index, boolean flag) throws AttributeSelectedWrongException {
 		if (attributeMapping.containsKey(new Integer(index))) {
@@ -28,12 +28,12 @@ public class AttributeSelector {
 			data.put(id, Boolean.FALSE);
 		}
 		this.attributeMapping = data;
-		this.newAttributeMapping = new HashMap<Attribute, Boolean>();
+		this.newAttributeMapping = new HashMap<NodeFeature, Boolean>();
 	}
 	
 	public AttributeSelector() {
 		this.attributeMapping = new HashMap<Integer, Boolean>();
-		this.newAttributeMapping = new HashMap<Attribute, Boolean>();
+		this.newAttributeMapping = new HashMap<NodeFeature, Boolean>();
 	}
 
 	public Map<Integer, Boolean> getAttributeMapping() {
@@ -47,15 +47,15 @@ public class AttributeSelector {
 		}
 	}
 
-	public void addNewAttribute(Attribute newAttribute, boolean newAttributeFlag) {
+	public void addNewAttribute(NodeFeature newAttribute, boolean newAttributeFlag) {
 		newAttributeMapping.put(newAttribute, Boolean.valueOf(newAttributeFlag));		
 	}
 
-	public Map<Attribute, Boolean> getNewAttributeMapping() {
+	public Map<NodeFeature, Boolean> getNewAttributeMapping() {
 		return newAttributeMapping;
 	}
 
-	public void setNewAttributeMapping(Map<Attribute, Boolean> newAttributeMapping) {
+	public void setNewAttributeMapping(Map<NodeFeature, Boolean> newAttributeMapping) {
 		this.newAttributeMapping = newAttributeMapping;
 	}
 
