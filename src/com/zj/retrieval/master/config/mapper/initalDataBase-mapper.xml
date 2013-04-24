@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.retrieval.master.mapper.InitTableMapper">
+	<update id="deleteDataBaseRetrieval">
+		DROP DATABASE IF EXISTS `RETRIEVAL`
+	</update>
+	<update id="createDataBaseRetrieval">
+		CREATE DATABASE `RETRIEVAL`
+	</update>
+	<update id="useDataBaseRetrieval">
+		USE `RETRIEVAL`
+	</update>
+	<update id="deleteTableNode">
+		DROP TABLE IF EXISTS `T_NODE`
+	</update>
+	<update id="createTableNode">
+		CREATE TABLE `T_NODE` (
+			`ID`              VARCHAR(45) PRIMARY KEY AUTO_INCREMENT,
+			`CNAME`           VARCHAR(45) NOT NULL DEFAULT '',
+			`ENAME`           VARCHAR(45) NOT NULL DEFAULT '',
+			`URI`             VARCHAR(45) NOT NULL DEFAULT '',
+			`PARENT_ID`       VARCHAR(45) NOT NULL DEFAULT '',
+			`OF_PARENT_INDEX` INT(11) NOT NULL DEFAULT -1,
+			`REMARK`          VARCHAR(100) NOT NULL DEFAULT '',
+			`CREATOR_ID`      INT(11) NOT NULL DEFAULT -1,
+			`MODIFIER_ID`     INT(11) NOT NULL DEFAULT -1,
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8
+	</update>
+	<insert id="insertVirtualNode">
+		INSERT INTO `T_NODE` VALUES('VIRTUAL_NODE', 'VIRTUAL_NODE', 'VIRTUAL_NODE', '', '-1', -1, '', -1, -1)
+	</insert>
+</mapper>
