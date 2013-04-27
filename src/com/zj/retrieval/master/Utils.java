@@ -2,14 +2,13 @@ package com.zj.retrieval.master;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.zj.retrieval.master.dao.NodeDao;
 import com.zj.retrieval.master.dao.UserDao;
@@ -19,13 +18,19 @@ public class Utils {
 	public static String IMAGE_PATH_PREFIX = "images/";
 	
 	public static ApplicationContext getApplicationContext() {
-		if (applicationContext == null) {
-			ServletContext servletCtx = ServletActionContext.getServletContext();
-			WebApplicationContext springCtx = WebApplicationContextUtils.getWebApplicationContext(servletCtx);
-			return springCtx;
-		} else {
-			return applicationContext;
-		}
+//		if (applicationContext == null) {
+//			ServletContext servletCtx = ServletActionContext.getServletContext();
+//			WebApplicationContext springCtx = WebApplicationContextUtils.getWebApplicationContext(servletCtx);
+//			return springCtx;
+//		} else {
+//			return applicationContext;
+//		}
+		
+		return null;
+	}
+	
+	public static String getId() {
+		return UUID.randomUUID().toString();
 	}
 	
 	public static String getImageNameExcludePath(String url) {

@@ -1,60 +1,35 @@
 package com.zj.retrieval.master.entity;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class NodeAttribute {
-	private static Logger logger = LoggerFactory.getLogger(NodeAttribute.class);
+	
 	private String key;
 	private String value;
 	private String id;
-	private Node node;
+	private String nodeId;
+	private int creatorId;
+	private int modifierId;
+	private String remark;
 	
-	public static JSONArray parse(Map<String, String> fields) {
-		JSONArray result = new JSONArray();
-		for (String key : fields.keySet()) {
-			JSONObject jField = new JSONObject();
-			try {
-				jField.put("key", key);
-				jField.put("value", fields.get(key));
-			} catch (JSONException e) { logger.error("在将自定义字段转换成json格式时发生错误。", e); }
-			result.put(jField);
-		}
-		return result;
+	public String getRemark() {
+		return remark;
 	}
-	
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
 	public NodeAttribute() { }
 	
-	public NodeAttribute(String key, String value, Node node) {
+	public NodeAttribute(String key, String value, String nodeId) {
 		this.key = key;
 		this.value = value;
-		this.node = node;
+		this.nodeId = nodeId;
 	}
 	
 	public NodeAttribute(String key, String value) {
 		this(key, value, null);
 	}
 	
-	public static Map<String, String> parse(JSONArray jUserfields) {
-		try {
-			Map<String, String> result = new HashMap<String, String>();
-			for (int i = 0; i < jUserfields.length(); i++) {
-				JSONObject jField = jUserfields.getJSONObject(i);
-				result.put(jField.getString("key"), jField.getString("value"));
-			}
-			return result;
-		} catch (JSONException e) { 
-			logger.error("在将json字符串解析成自定义字段时发生错误。", e);
-			return null;
-		}
-	}
-
 	public String getKey() {
 		return key;
 	}
@@ -79,11 +54,27 @@ public class NodeAttribute {
 		this.id = id;
 	}
 
-	public Node getNode() {
-		return node;
+	public String getNodeId() {
+		return nodeId;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeId(String nodeId) {
+		this.nodeId = nodeId;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
 	}
 }

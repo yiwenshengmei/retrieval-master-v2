@@ -1,38 +1,16 @@
 package com.zj.retrieval.master.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class NodeImage {
 	private String id;
 	private String path;
-	private Node node;
+	private String nodeId;
 	private String url;
+	private int creatorId;
+	private int modifierId;
 	
-	public static List<NodeImage> batchCreate(List<String> paths, Node node) {
-		List<NodeImage> ret = new ArrayList<NodeImage>();
-		for (String path : paths) {
-			ret.add(new NodeImage(path, node));
-		}
-		return ret;
-	}
-	
-	public Node getNode() {
-		return node;
-	}
-
-	public void setNode(Node node) {
-		this.node = node;
-	}
-
 	public NodeImage(String path) {
-		this(path, null);
-	}
-	
-	public NodeImage(String path, Node node) {
 		this.path = path;
-		this.node = node;
 	}
 	
 	public NodeImage() {}
@@ -59,5 +37,29 @@ public class NodeImage {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(String nodeId) {
+		this.nodeId = nodeId;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
 	}
 }

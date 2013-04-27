@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zj.retrieval.master.mapper.NodeMapper">
+	<insert id="InsertNodeAttribute" parameterType="NodeAttribute">
+		INSERT INTO `T_NODE_ATTRIBUTE` 
+		(`ID`, `ATTR_KEY`, `ATTR_VALUE`, `NODE_ID`, `REMARK`, `CREATOR_ID`, `MODIFIER_ID`)
+		VALUES
+		(#{id}, #{key}, #{value}, #{nodeId}, #{remark}, #{creatorId}, #{modifierId})
+	</insert>
+</mapper>

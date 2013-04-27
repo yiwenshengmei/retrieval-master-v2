@@ -1,27 +1,16 @@
 package com.zj.retrieval.master.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 public class FeatureImage {
 	private String id;
 	private String path;
-	private NodeFeature feature;
+	private String featureId;
+	private int creatorId;
+	private int modifierId;
 	private String url;
 	
-	public static List<FeatureImage> batchCreate(List<String> paths, NodeFeature feature) {
-		List<FeatureImage> ret = new ArrayList<FeatureImage>();
-		for (String path : paths) {
-			ret.add(new FeatureImage(path, feature));
-		}
-		return ret;
-	}
-	
-	public FeatureImage(String path, NodeFeature feature) {
+	public FeatureImage(String path, String featureId) {
 		this.path = path;
-		this.feature = feature;
+		this.featureId = featureId;
 	}
 	
 	public FeatureImage() {}
@@ -42,19 +31,40 @@ public class FeatureImage {
 		this.path = path;
 	}
 
-	public NodeFeature getFeature() {
-		return feature;
-	}
-
-	public void setFeature(NodeFeature feature) {
-		this.feature = feature;
-	}
-
 	public String getUrl() {
 		return url;
 	}
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public String getFeatureId() {
+		return featureId;
+	}
+
+	public void setFeatureId(String featureId) {
+		this.featureId = featureId;
+	}
+
+	public int getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
+	}
+
+	@Override
+	public String toString() {
+		return "FeatureImage [id=" + id + ", path=" + path + "]";
 	}
 }

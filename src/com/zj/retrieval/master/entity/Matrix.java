@@ -30,6 +30,12 @@ public class Matrix {
 		this.array = data;
 	}
 
+	/**
+	 * 向矩阵中添加一行
+	 * @param newRow
+	 * @param start
+	 * @param len
+	 */
 	public void addRow(int[] newRow, int start, int len) {
 		
 		if (newRow.length == 0)
@@ -51,7 +57,7 @@ public class Matrix {
 					// 说明在指针指在原始数据位置上
 					newMatrix[row][col] = array[row][col];
 				} else {
-					// 说明指针指在原先没有数据的位置上，这些位置应该补�?
+					// 说明指针指在原先没有数据的位置上，这些位置应该补�?
 					newMatrix[row][col] = 0;
 				}
 			}
@@ -61,12 +67,18 @@ public class Matrix {
 		array = newMatrix;
 	}
 
+	/**
+	 * 向矩阵中添加一列
+	 * @param newCol
+	 * @param start
+	 * @param len
+	 */
 	public void addCol(int[] newCol, int start, int len) {
 		if (newCol.length != getRowSize() & getRowSize() != 0) {
 			throw new RuntimeException("The length of new col wrong.");
 		}
 		
-		// 如果当前矩阵是一个空的矩阵，则特殊处�?
+		// 如果当前矩阵是一个空的矩阵，则特殊处�?
 		if (getRowSize() == 0) {
 			int[][] _data = new int[len][1];
 			for(int i = 0; i < len; i++) {
@@ -85,14 +97,20 @@ public class Matrix {
 		this.array = _data;
 	}
 
-	public void setValue(int row, int col, int value) {
-		this.array[row][col] = value;
-	}
-
+	/**
+	 * 获取一整行
+	 * @param index
+	 * @return
+	 */
 	public int[] getRow(int index) {
 		return this.array[index];
 	}
-
+	
+	/**
+	 * 获取一整列
+	 * @param index
+	 * @return
+	 */
 	public int[] getCol(int index) {
 		int[] result = new int[getRowSize()];
 		for (int row = 0; row < getRowSize(); row++) {
@@ -100,7 +118,23 @@ public class Matrix {
 		}
 		return result;
 	}
+	
+	/**
+	 * 设置矩阵中的一项
+	 * @param row
+	 * @param col
+	 * @param value
+	 */
+	public void setValue(int row, int col, int value) {
+		this.array[row][col] = value;
+	}
 
+	/**
+	 * 得到矩阵中的一项
+	 * @param row
+	 * @param col
+	 * @return
+	 */
 	public int getValue(int row, int col) {
 		return array[row][col];
 	}
@@ -111,6 +145,21 @@ public class Matrix {
 
 	public int getColSize() {
 		return array.length == 0 ? 0 : array[0].length;
+	}
+	
+	public void removeRow(int row) {
+		Matrix m = new Matrix();
+		for (int i = 0; i < getRowSize(); i++) {
+			if (i == row)
+				continue;
+			else 
+				m.addRow(array[i], 0, getColSize());
+		}
+		array = m.array;
+	}
+	
+	public void removeCol(int col) {
+		// TODO
 	}
 	
 	@Override
@@ -124,15 +173,5 @@ public class Matrix {
 		return sb.toString();
 	}
 	
-	public void removeRow(int row) {
-		Matrix m = new Matrix();
-		for (int i = 0; i < getRowSize(); i++) {
-			if (i == row)
-				continue;
-			else 
-				m.addRow(array[i], 0, getColSize());
-		}
-		array = m.array;
-	}
 
 }

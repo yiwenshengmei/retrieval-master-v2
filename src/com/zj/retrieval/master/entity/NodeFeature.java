@@ -1,10 +1,5 @@
 package com.zj.retrieval.master.entity;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.lang.StringUtils;
-
 
 public class NodeFeature {
 
@@ -12,47 +7,21 @@ public class NodeFeature {
 	public static final int NO     = 1;
 	public static final int UNKNOW = 3;
 	
-	public static String textValue(int value) {
-		switch(value) {
-			case YES : return "Yes";
-			case NO : return "No";
-			case UNKNOW : return "Unknow";
-			default : return "Unknow Feature Answer Value";
-		}
-	}
-	
-	public static String shotTextValue(int value) {
-		switch(value) {
-			case YES : return "¡Ì";
-			case NO : return "¡Á";
-			case UNKNOW : return "-";
-			default : return "Unknow Feature Answer Value";
-		}
-	}
-	
-	private String desc = StringUtils.EMPTY;
-	private String name = StringUtils.EMPTY;
-	private String englishName = StringUtils.EMPTY;
-	private List<FeatureImage> images;
-	private File[] imageFiles;
-	private String[] imageFilesContentType;
-	private String[] imageFilesFileName;
-	private RetrievalDataSource retrievalDataSource;
 	private String id;
-	private int index = -1;
+	private String nodeId;
+	private int inNodeIndex;
+	private String desc;
+	private String cname;
+	private String ename;
+	private int creatorId;
+	private int modifierId;
 	
 	public NodeFeature() { 
-		images = new ArrayList<FeatureImage>();
 	}
 	
 	public NodeFeature(String name) {
 		this();
-		this.name = name;
-	}
-	
-	public NodeFeature(String name, RetrievalDataSource retrievalDataSource) {
-		this(name);
-		this.retrievalDataSource = retrievalDataSource;
+		this.cname = name;
 	}
 	
 	public NodeFeature(String name, String id) {
@@ -62,18 +31,8 @@ public class NodeFeature {
 	
 	public NodeFeature(String name, String enName, String desc) {
 		this.desc = desc;
-		this.name = name;
-		this.englishName = enName;
-	}
-	
-	public NodeFeature withRetrievalDataSource(RetrievalDataSource rds) {
-		this.retrievalDataSource = rds;
-		return this;
-	}
-	
-	public NodeFeature withImages(List<FeatureImage> images) {
-		this.images = images;
-		return this;
+		this.cname = name;
+		this.ename = enName;
 	}
 	
 	public String getDesc() {
@@ -85,39 +44,31 @@ public class NodeFeature {
 	}
 
 	public String getName() {
-		return name;
+		return cname;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.cname = name;
 	}
 
 	public String getEnglishName() {
-		return englishName;
+		return ename;
 	}
 
 	public void setEnglishName(String englishName) {
-		this.englishName = englishName;
+		this.ename = englishName;
 	}
 
 	public int getIndex() {
-		return index;
+		return inNodeIndex;
 	}
 
 	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public List<FeatureImage> getImages() {
-		return images;
-	}
-
-	public void setImages(List<FeatureImage> images) {
-		this.images = images;
+		this.inNodeIndex = index;
 	}
 
 	public String getEnName() {
-		return englishName;
+		return ename;
 	}
 
 	public String getId() {
@@ -128,76 +79,51 @@ public class NodeFeature {
 		this.id = id;
 	}
 
-	public RetrievalDataSource getRetrievalDataSource() {
-		return retrievalDataSource;
+	public String getNodeId() {
+		return nodeId;
 	}
 
-	public void setRetrievalDataSource(RetrievalDataSource retrievalDataSource) {
-		this.retrievalDataSource = retrievalDataSource;
+	public void setNodeId(String nodeId) {
+		this.nodeId = nodeId;
 	}
 
-	public String[] getImageFilesContentType() {
-		return imageFilesContentType;
+	public int getInNodeIndex() {
+		return inNodeIndex;
 	}
 
-	public void setImageFilesContentType(String[] imageFilesContentType) {
-		this.imageFilesContentType = imageFilesContentType;
+	public void setInNodeIndex(int inNodeIndex) {
+		this.inNodeIndex = inNodeIndex;
 	}
 
-	public String[] getImageFilesFileName() {
-		return imageFilesFileName;
+	public String getCname() {
+		return cname;
 	}
 
-	public void setImageFilesFileName(String[] imageFilesFileName) {
-		this.imageFilesFileName = imageFilesFileName;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
-	public void setImageFiles(File[] imageFiles) {
-		this.imageFiles = imageFiles;
+	public String getEname() {
+		return ename;
 	}
 
-	public File[] getImageFiles() {
-		return imageFiles;
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((englishName == null) ? 0 : englishName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + index;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+	public int getCreatorId() {
+		return creatorId;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		NodeFeature other = (NodeFeature) obj;
-		if (englishName == null) {
-			if (other.englishName != null)
-				return false;
-		} else if (!englishName.equals(other.englishName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (index != other.index)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public int getModifierId() {
+		return modifierId;
+	}
+
+	public void setModifierId(int modifierId) {
+		this.modifierId = modifierId;
 	}
 }
