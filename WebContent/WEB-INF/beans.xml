@@ -63,7 +63,9 @@
 		<property name="session" ref="sqlSession" />
 	</bean>
 	
-	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+	<bean class="com.zj.retrieval.master.springmvc.controller.NodeController"/>
 	<tx:annotation-driven/>
 	
 </beans>
