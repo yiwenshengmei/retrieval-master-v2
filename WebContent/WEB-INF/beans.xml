@@ -17,7 +17,7 @@
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>/WebContent/WEB-INF/jdbc.properties</value>
+				<value>WEB-INF/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -39,7 +39,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="/WebContent/WEB-INF/mybatis.xml" />
+		<property name="configLocation" value="WEB-INF/mybatis.xml" />
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/zj/retrieval/master/config/resultmap/*-resultmap.xml</value>
@@ -48,24 +48,13 @@
 		</property>
 	</bean>
 	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">   
-        <constructor-arg index="0" ref="sqlSessionFactory" />   
-    </bean>   
+	<bean id="SqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
 	
-	<bean id="initDataBaseListener" class="com.zj.retrieval.master.listener.InitDataBaseListener">
-		<property name="session" ref="sqlSession" />  
-	</bean>	
-	<bean id="NodeService" class="com.zj.retrieval.master.service.NodeService">
-		<property name="session" ref="sqlSession" />
-		<property name="nodeAttributeService" ref="NodeAttributeService"></property>  
-	</bean>
-	<bean id="NodeAttributeService" class="com.zj.retrieval.master.service.NodeAttributeService">
-		<property name="session" ref="sqlSession" />
-	</bean>
+	<bean id="NodeController" class="com.zj.retrieval.master.springmvc.controller.NodeController" />
 	
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
-	<bean class="com.zj.retrieval.master.springmvc.controller.NodeController"/>
 	<tx:annotation-driven/>
+	<context:component-scan base-package="com.zj.retrieval.master" />
 	
 </beans>

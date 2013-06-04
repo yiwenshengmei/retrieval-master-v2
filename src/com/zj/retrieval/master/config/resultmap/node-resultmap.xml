@@ -5,7 +5,6 @@
 		<result property="id" column="id" />
 		<result property="cname" column="cname" />
 		<result property="ename" column="ename" />
-		<result property="uri" column="uri" />
 	</resultMap>
 </mapper>
 

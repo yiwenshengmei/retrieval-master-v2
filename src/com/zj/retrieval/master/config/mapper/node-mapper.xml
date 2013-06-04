@@ -21,6 +21,23 @@
 		SELECT * FROM T_NODE WHERE ENAME = '${ename}'
 	</select>
 	
+	
+	<select id="SelectAll" 
+	        resultMap="com.zj.retrieval.master.config.resultmap.nodeResultMap"
+	        parameterType="hashmap">
+		SELECT CNAME, ENAME FROM T_NODE LIMIT #{begin}, #{end}
+	</select>
+	
+	<select id="SelectNodeByPid"
+	        resultType="hashmap"
+	        parameterType="hashmap">
+	        
+		SELECT N1.ID, N1.CNAME, N1.ENAME, COUNT(N2.ID) AS CNT FROM 
+		(SELECT ID, CNAME, ENAME FROM T_NODE WHERE PARENT_ID = #{pid}) N1
+		LEFT JOIN T_NODE N2 ON N2.PARENT_ID = N1.ID 
+		GROUP BY N1.ID, N1.CNAME, N1.ENAME
+	</select>
+	
 	<update id="updateENameByEName" parameterType="hashmap">
 		UPDATE T_NODE SET ENAME = '${newEName}' WHERE ENAME = '${ename}'
 	</update>
